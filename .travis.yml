@@ -4,9 +4,15 @@ python:
 install:
 - pip install ansible==2.7.9 molecule apache-libcloud
 script:
-- molecule --debug test
+- molecule create
+- molecule converge
+- molecule verify
 after_script:
-- molecule --debug destroy
+- molecule destroy
+#script:
+#- molecule --debug test
+#after_script:
+#- molecule --debug destroy
 env:
   global:
   - secure: LMyTu2p4l0uiR6cuQQUmcI9EArao6guTUNuBxGbJW47l53wE0sFt5rP3JNKpmmKeBYJgNzu4Z07al9M/eUD2kJrBNAJuNIC3OtPUPSlkWrGaPe41Npf25BVOFy5Oef4SM4E+cZ9fq7WXpKkuxK8eRACQtHqzRjJVpWBcB3vj5CDloDGIBAZ1WN0rdXL+rJCoEwi2pmKgHpxUnCcw8aA2/+nktx3yfvabLBc5aLZ2OrkNXqzzFwE0Uorlv+QsHJPD+ccFTxnhJrj3Fe1Nor/DrYc4miRs3CtRgrq61GT4wqukDaff/UOA9G9BP5lCxNhfkaidPcWuPMpCJvLIkNX07PyEMHZteBT0fc+5ZDSbbaO0kQbYDx9lV3oue+zyt1F8Tm2HFpRKYP3hIuEtnFYrf2TJas7XiL4vVLNEPGZGOsTi0nspG5ydT89FnfaiFyz2cO8qBXWVTZ6EvwsqUgyORr5fVMwx5Z9tNVMKZPzagS8fmHWKiQfdoFhx2INoJxgXTwuSjLNFmkquUdu3+wjA6B6S6cWkqb9LkWPV7EaQub72SZV3TlIKYYkye9nyde+FEPBZDcoe0DYHTkaw6jcG/TPlaW6gFjidRuSCCZD/ntdfPtsHhBfEb3lUwOE8DMtNh5ZOoaaV0B+MV6i03xLXVi+UmO30/AQj4Ut5wQaqmWk=
