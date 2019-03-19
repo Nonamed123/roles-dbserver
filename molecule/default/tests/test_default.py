@@ -4,6 +4,7 @@ import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
+MOLECULE_EPHEMERAL_DIRECTORY: /var/folders/wk/cwtmfyx9099gn_g744lt61bh0000gn/T/molecule/ansible-common/default
 
 # check if MongoDB is enabled and running
 def test_mongo_running_and_enabled(host):
