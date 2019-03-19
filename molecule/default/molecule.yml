@@ -7,9 +7,9 @@ lint:
   name: yamllint
 platforms:
   - name: instance
-    zone: us-west1-a
-    machine_type: f1-micro
-    image: debian-8
+    zone: europe-west1-b
+    machine_type: g1-small
+    image: ubuntu-1604-xenial-v20170815a
 provisioner:
   name: ansible
   lint:
