@@ -22,7 +22,7 @@
       async_status:
         jid: "{{ item.ansible_job_id }}"
       register: gce_jobs
-      until: gce_jobs.finished
+#      until: gce_jobs.finished
       retries: 300
       with_items: "{{ server.results }}"
 
