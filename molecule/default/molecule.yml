@@ -10,7 +10,6 @@ platforms:
     zone: europe-west1-b
     machine_type: g1-small
     image: ubuntu-1604-xenial-v20170815a
-    no_log: true
 provisioner:
   name: ansible
   lint:
