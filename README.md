@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Nonamed123/roles-dbserver.svg?branch=master)](https://travis-ci.com/Nonamed123/roles-dbserver)
+
 Role Name
 =========
 
