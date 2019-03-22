@@ -1,6 +1,6 @@
 # Install MongoDB
 - name: MongoDb | Import publick key
-  sudo_user: root
+  become: true
   apt_key: >
           keyserver=hkp://keyserver.ubuntu.com:80
           id=EA312927
