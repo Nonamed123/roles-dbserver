@@ -8,6 +8,8 @@ script:
 after_script:
 - molecule --debug destroy
 env:
+  matrix:
+  - GCE_CREDENTIALS_FILE="$(pwd)/hardy-symbol-235210-58b1ba999933.json"
   global:
   - secure: vbe5ukEJQvElsO/VhNVJgQKQHdosyT+t+sDL+sCGLpE2xH794OaWyYUccxKXFnSnUi3cLZ6JWHuIS1T02Ppa7U124bD2PCaOANQY4FtgYMxVDOL2h6QJ2gwATvm7jlIJ/OmsJEjC4V1qeqBD7taO3ynpOf4wJCXwaRjzW+KDUF4UmK/JAdhjlh/ot+Ql7os3SyJ7zQFqUdeizHqmkrQPkGWIoZkbOJDuvhTMPLgTMK7MiFgxpYDMfgPtHyd7xQKgWkwMypQjzpoq0TfXAItFl/qDlDf/aygKL/h0j9akzIz145CyrKpjF7IMP3yfgfeQvGzxwT1yr3Ti3xXdDAv36LqKuB+da6DHBlhFcBScIRTVzugTAOxBNZUT3UqHo+Jw8XM/SPt2PGn5r0BjR/Ulvr7eEsnOeq77bcCJjHJ8OJM4Enqr7LUM4TM0ka6CqScQUh/1w81+rpQZdojyzf0uAN3nKlfE5usNpFT985WqNy9aV1heeddupxCdcRP/aXVCjmg1/SO3GOmT/uMvoM1OpcjslNT/L3guU3B+oP2z00/oM8Frqz3ZxMnmJUAZEN4s+TUe0gePvSBe9p6Y0nKeIHYkWgtnJ6qDj6CqE6e6xVGFVRFQ7+q05mv3pLn8NhST35fCCz1o1ujmpBzreq4uBAxG2kxtt/H9pBtZ7fC+EjA=
   - secure: QV0eqx3oGWZt9Zm0W7iwXV3P5ZxRHNvoAmU4jytILGwIYbY0Xi62n6DIugAHIHHqnRef4+1L/jA3J/oMOFAiTBpmvPGJko5uXerjrN0IAEkdfWDfJ3CRIf83U4GJpYm0xuQTgp6eIDcMZh5N5hSQa/7ap+sPsn9sh01t0fN8wjcPh0NQ4qFQkzkasAoTmCAKEN6MK99K3b5Zuzyaa9V/ReT/Fu72xkdd1W9/eeWp92iBNhL7LqTGiEUcUdBlkTW7xL5kM6gi7UxEu0pBnEALZATQF/SA1dqhR/Z8a21JP2oOS/biMdUx38KZBj1aMSYPuBnqle44ayBH8lRYnsgpdD/XUbVKRmqaoxvIKfTI5SIUa4WMGQmLLLfBDkMPeF8g0yO88k0FK+SPVwQh+6TD8MlTElYn9siFPEdntXFdNRXNIAq0/RJLNW2LSWwKv+j+9GUvrsSdbGOkWRxE3oyWF+Wlfv8YUwWTXF1kkkWNyjNyBsgCRqtZxK7ReOsO3CHeM1/VpdPDV8Kj3bUvv68OnSCDhLAMXNvCoDJ6zFsyGy9m8ncuGxUXwITAltNWoCJJiVJGguKZ6/pu9HB2h6ePjOAHOi9siZFoYccZb+REzqIsbajzCZ1xHxfH4CGUE+V+LKyRRM4P1TOTvu0yyEfDgnYluOmSVclIwwpiVz3lIz8=
@@ -15,6 +17,9 @@ env:
 before_install:
 - openssl aes-256-cbc -K $encrypted_111cffa1dd2d_key -iv $encrypted_111cffa1dd2d_iv
   -in secrets.tar.enc -out secrets.tar -d
+- tar xvf secrets.tar
+- mv id_rsa /home/travis/.ssh/
+- chmod 0600 /home/travis/.ssh/id_rsa
 
 notifications:
   slack: nonamed-hq:oNSDgpO1cSanENRp1cXPmINc
