@@ -8,8 +8,9 @@ script:
 - molecule create
 - molecule converge
 - molecule verify
+- molecule --debug test
 after_script:
-#- molecule destroy
+- molecule destroy
 env:
   matrix:
   - GCE_CREDENTIALS_FILE="$(pwd)/hardy-symbol-235210-58b1ba999933.json"
