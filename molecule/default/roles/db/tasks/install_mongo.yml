@@ -29,12 +29,14 @@
   tags: install
 
 - name: MongoDB | Ensure MongoDB is running
+  sudo: yes
   service:
           name: mongod
           state: started
   tags: install
 
 - name: MongoDB | Ensure MongoDB enable
+  sudo: yes
   service:
           name: mongod
           enabled: yes
