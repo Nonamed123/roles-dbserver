@@ -1,7 +1,6 @@
 # Install MongoDB
 - name: MongoDb | Import publick key
-  sudo: yes
-  become: true
+  sudo_user: root
   apt_key: >
           keyserver=hkp://keyserver.ubuntu.com:80
           id=EA312927
@@ -13,7 +12,7 @@
   tags: install
 
 - name: MongoDB |Add file
-  become: true
+  sudo_user: root
   file:
           path=/etc/apt/sources.list.d/mongodb-org-3.2.list
           state=touch
@@ -21,15 +20,14 @@
   tags: install
 
 - name: MongoDB | Add repository
-  sudo: yes
-  become: true
+  sudo_user: root
   lineinfile: >
           line="deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
           dest=/etc/apt/sources.list.d/mongodb-org-3.2.list
   tags: install
 
 - name: MongoDb | Install MongoDB
-  become: true
+  sudo_user: root
   apt:
           name: mongodb-org
           allow_unauthenticated: yes
@@ -38,7 +36,7 @@
   tags: install
 
 - name: MongoDB | Install mc
-  become: true
+  sudo_user: root
   apt:
           name: mc
           state: present
