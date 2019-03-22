@@ -31,8 +31,17 @@
 
     - name: Populate instance config
       sudo: yes
-      set_fact:
-        instance_conf: {}
+      set_fact: foo_item="{{ item }}"
+      with_items:
+          - four
+          - five
+          - six
+      register: foo_result
+
+    - name: make a list
+      set_fact: foo="{{ foo_result.results | map(attribute='ansible_facts.foo_item') | list }}"
+
+    - debug: var=foo
 
     - name: Dump instance config
       sudo: yes
