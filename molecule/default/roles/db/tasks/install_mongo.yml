@@ -1,40 +1,21 @@
 # Install MongoDB
-- name: MongoDb | Import publick key
-  become: true
+---
+- name: Add mongo ppa key
+  sudo: yes
   apt_key: >
-          keyserver=hkp://keyserver.ubuntu.com:80
-          id=EA312927
-  tags: install
-
-- name: Checking status | check status file
-  stat: path=/etc/apt/sources.list.d/mongodb-org-3.2.list
-  register: stat_result
-  tags: install
-
-- name: MongoDB |Add file
-  sudo_user: root
-  file:
-          path=/etc/apt/sources.list.d/mongodb-org-3.2.list
-          state=touch
-  when: stat_result.stat.exists == False      
-  tags: install
-
-- name: MongoDB | Add repository
-  sudo_user: root
+    keyserver=hkp://keyserver.ubuntu.com:80
+    id=7F0CEB10
+    state=present
+- name: Add mongo sources list
+  sudo: yes
   lineinfile: >
-          line="deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse"
-          dest=/etc/apt/sources.list.d/mongodb-org-3.2.list
-  tags: install
-
-- name: MongoDb | Install MongoDB
-  sudo_user: root
-  apt:
-          name: mongodb-org
-          allow_unauthenticated: yes
-          state: present
-          update_cache: yes
-  tags: install
-
+    line="deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse"
+    dest=/etc/apt/sources.list.d/mongodb.list
+    state=present
+    create=yes
+- name: Install mongo
+  sudo: yes
+  apt: name=mongodb-org state=latest update_cache=yes
 - name: MongoDB | Install mc
   sudo_user: root
   apt:
