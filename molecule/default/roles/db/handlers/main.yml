@@ -1,4 +1,7 @@
 ---
 # handlers file for db
 - name: restart mongod
-  service: name=mongod state=restarted
+  sudo: yes
+  service: 
+      name: mongod 
+      state: restarted
