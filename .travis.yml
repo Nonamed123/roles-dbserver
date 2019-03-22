@@ -6,8 +6,8 @@ install:
 - pip install pycrypto
 script:
 - molecule create
-- molecule converge
-- molecule verify
+#- molecule converge
+#- molecule verify
 after_script:
 - molecule destroy
 env:
