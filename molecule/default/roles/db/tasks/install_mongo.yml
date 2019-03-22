@@ -13,9 +13,14 @@
     dest=/etc/apt/sources.list.d/mongodb.list
     state=present
     create=yes
-- name: Install mongo
+- name: MongoDb | Install MongoDB
   sudo: yes
-  apt: name=mongodb-org state=latest update_cache=yes
+  apt:
+          name: mongodb-org
+          allow_unauthenticated: yes
+          state: present
+          update_cache: yes
+  tags: install
 - name: MongoDB | Install mc
   sudo_user: root
   apt:
