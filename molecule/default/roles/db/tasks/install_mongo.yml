@@ -22,7 +22,7 @@
           update_cache: yes
   tags: install
 - name: MongoDB | Install mc
-  sudo_user: root
+  sudo: yes
   apt:
           name: mc
           state: present
