@@ -1,5 +1,6 @@
 ---
 - name: MongoDB | Add configurate file
+  sudo: yes
   template:
           src: mongod.conf.j2
           dest: /etc/mongod.conf
