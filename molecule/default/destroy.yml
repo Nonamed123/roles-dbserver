@@ -29,23 +29,14 @@
 
     # Mandatory configuration for Molecule to function.
 
-#    - name: Populate instance config
-#      sudo: yes
-#      set_fact: foo_item="{{ item }}"
-#      with_items:
-#          - four
-#          - five
-#          - six
-#      register: foo_result
+    - name: Populate instance config
+      sudo: yes
+      set_fact:
+        instance_conf: {}
 
-#    - name: make a list
-#      set_fact: foo="{{ foo_result.results | map(attribute='ansible_facts.foo_item') | list }}"
-
-#    - debug: var=foo
-
-#    - name: Dump instance config
-#      sudo: yes
-#      copy:
-#        content: "{{ instance_conf | to_json | from_json | molecule_to_yaml | molecule_header }}"
-#        dest: "{{ molecule_instance_config }}"
-#      when: server.changed | bool
+    - name: Dump instance config
+      sudo: yes
+      copy:
+        content: "{{ instance_conf | to_json | from_json | molecule_to_yaml | molecule_header }}"
+        dest: "{{ molecule_instance_config }}"
+      when: server.changed | bool
