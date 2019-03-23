@@ -8,7 +8,7 @@ script:
 - molecule create
 - molecule converge
 - molecule verify
-#- molecule --debug test
+- molecule --debug test
 after_script:
 - molecule destroy
 env:
