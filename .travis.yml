@@ -9,7 +9,7 @@ script:
 - molecule converge
 - molecule verify
 - molecule cleanup
-- molecule test
+#- molecule test
 after_script:
 - molecule destroy
 env:
