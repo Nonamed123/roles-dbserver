@@ -8,6 +8,7 @@ script:
 - molecule create
 - molecule converge
 - molecule verify
+- molecule cleanup
 - molecule --debug test
 after_script:
 - molecule destroy
