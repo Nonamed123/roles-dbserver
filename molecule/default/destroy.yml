@@ -19,17 +19,25 @@
         project_id: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
       register: server
       with_items: "{{ molecule_yml.platforms }}"
+    
+    - name: Wait for instance(s) deletion to complete
+      async_status:
+        jid: "{{ item.ansible_job_id }}"
+      register: gce_jobs
+      until: gce_jobs.finished
+      retries: 300
+      with_items: "{{ server.results }}"
 
     # Mandatory configuration for Molecule to function.
 
-#    - name: Populate instance config
-#      set_fact:
-#        instance_conf: {}
+    - name: Populate instance config
+      set_fact:
+        instance_conf: {}
 
-#    - name: Dump instance config
-#      copy:
+    - name: Dump instance config
+      copy:
         # NOTE(retr0h): Workaround for Ansible 2.2.
         #               https://github.com/ansible/ansible/issues/20885
-#        content: "{{ instance_conf | to_json | from_json | molecule_to_yaml | molecule_header }}"
-#        dest: "{{ molecule_instance_config }}"
-#      when: server.changed | bool
+        content: "{{ instance_conf | to_json | from_json | molecule_to_yaml | molecule_header }}"
+        dest: "{{ molecule_instance_config }}"
+      when: server.changed | bool
